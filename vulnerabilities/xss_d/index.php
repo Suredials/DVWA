@@ -31,12 +31,6 @@ switch( dvwaSecurityLevelGet() ) {
 
 require_once DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/xss_d/source/{$vulnerabilityFile}";
 
-# For the impossible level, don't decode the querystring
-$decodeURI = "decodeURI";
-if ($vulnerabilityFile == 'impossible.php') {
-	$decodeURI = "";
-}
-
 $page[ 'body' ] = <<<EOF
 <div class="body_padded">
 	<h1>Vulnerability: DOM Based Cross Site Scripting (XSS)</h1>
@@ -47,21 +41,20 @@ $page[ 'body' ] = <<<EOF
 
 		<form name="XSS" method="GET">
 			<select name="default">
-				<script>
-					if (document.location.href.indexOf("default=") >= 0) {
-						var lang = document.location.href.substring(document.location.href.indexOf("default=")+8);
-						document.write("<option value='" + lang + "'>" + $decodeURI(lang) + "</option>");
-						document.write("<option value='' disabled='disabled'>----</option>");
-					}
-					    
-					document.write("<option value='English'>English</option>");
-					document.write("<option value='French'>French</option>");
-					document.write("<option value='Spanish'>Spanish</option>");
-					document.write("<option value='German'>German</option>");
-				</script>
+				<option value="English">English</option>
+				<option value="French">French</option>
+				<option value="Spanish">Spanish</option>
+				<option value="German">German</option>
 			</select>
 			<input type="submit" value="Select" />
 		</form>
+		<script>
+			const language = new URLSearchParams(window.location.search).get('default');
+			const selector = document.querySelector('select[name="default"]');
+			if (['English', 'French', 'Spanish', 'German'].includes(language)) {
+				selector.value = language;
+			}
+		</script>
 	</div>
 EOF;
 
