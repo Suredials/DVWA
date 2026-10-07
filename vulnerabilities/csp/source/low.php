@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/impossible.php';
+return;
+
 $headerCSP = "Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self';";
 
 header($headerCSP);

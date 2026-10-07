@@ -84,7 +84,13 @@ class HealthController
 		$input = (array) json_decode(file_get_contents('php://input'), TRUE);
 		if (array_key_exists ("target", $input)) {
 			$target = $input['target'];
-			if (!is_string($target) || filter_var($target, FILTER_VALIDATE_IP) === false) {
+			$is_ip = is_string($target) && filter_var($target, FILTER_VALIDATE_IP) !== false;
+			$is_hostname = is_string($target) && filter_var(
+				$target,
+				FILTER_VALIDATE_DOMAIN,
+				FILTER_FLAG_HOSTNAME
+			) !== false;
+			if (!$is_ip && !$is_hostname) {
 				return array(
 					'status_code_header' => 'HTTP/1.1 422 Unprocessable Entity',
 					'body' => json_encode(array('status' => 'Invalid target')),
