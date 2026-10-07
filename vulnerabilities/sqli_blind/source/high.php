@@ -2,7 +2,8 @@
 
 if( isset( $_COOKIE[ 'id' ] ) ) {
 	// Get input
-	$id = $_COOKIE[ 'id' ];
+	$id = filter_var( $_COOKIE[ 'id' ], FILTER_VALIDATE_INT, array( 'options' => array( 'min_range' => 1 ) ) );
+	if( $id === false ) { $id = 0; }
 	$exists = false;
 
 	switch ($_DVWA['SQLI_DB']) {

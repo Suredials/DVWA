@@ -2,7 +2,8 @@
 
 if( isset( $_REQUEST[ 'Submit' ] ) ) {
 	// Get input
-	$id = $_REQUEST[ 'id' ];
+	$id = filter_var( $_REQUEST[ 'id' ] ?? '', FILTER_VALIDATE_INT, array( 'options' => array( 'min_range' => 1 ) ) );
+	if( $id === false ) { $id = 0; }
 
 	switch ($_DVWA['SQLI_DB']) {
 		case MYSQL:

@@ -2,7 +2,8 @@
 
 if( isset( $_GET[ 'Submit' ] ) ) {
 	// Get input
-	$id = $_GET[ 'id' ];
+	$id = filter_var( $_GET[ 'id' ] ?? '', FILTER_VALIDATE_INT, array( 'options' => array( 'min_range' => 1 ) ) );
+	if( $id === false ) { $id = 0; }
 	$exists = false;
 
 	switch ($_DVWA['SQLI_DB']) {

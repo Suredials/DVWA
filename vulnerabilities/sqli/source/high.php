@@ -2,7 +2,8 @@
 
 if( isset( $_SESSION [ 'id' ] ) ) {
 	// Get input
-	$id = $_SESSION[ 'id' ];
+	$id = filter_var( $_SESSION[ 'id' ], FILTER_VALIDATE_INT, array( 'options' => array( 'min_range' => 1 ) ) );
+	if( $id === false ) { $id = 0; }
 
 	switch ($_DVWA['SQLI_DB']) {
 		case MYSQL:
