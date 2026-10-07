@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/impossible.php';
+return;
+
 if( isset( $_POST[ 'Change' ] ) && ( $_POST[ 'step' ] == '1' ) ) {
 	// Hide the CAPTCHA form
 	$hide_form = true;
