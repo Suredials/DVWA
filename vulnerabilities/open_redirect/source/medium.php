@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_GET['redirect']) && is_string($_GET['redirect']) && preg_match('/^info\.php\?id=[12]$/D', $_GET['redirect'])) {
+if (isset($_GET['redirect']) && is_string($_GET['redirect']) && preg_match('/^(?!\/\/)(?:\/(?!\/)|[A-Za-z0-9])[A-Za-z0-9\/._~?&=%#-]*$/D', $_GET['redirect'])) {
 	header ("Location: " . $_GET['redirect']);
 	exit;
 }
