@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/impossible.php';
+return;
 function decrypt ($ciphertext, $key) {
 	$e = openssl_decrypt($ciphertext, 'aes-128-ecb', $key, OPENSSL_PKCS1_PADDING);
 	if ($e === false) {
