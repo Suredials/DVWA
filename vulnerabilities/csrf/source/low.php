@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/secure.php';
+return;
+
 if( isset( $_GET[ 'Change' ] ) ) {
 	// Get input
 	$pass_new  = $_GET[ 'password_new' ];

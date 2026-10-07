@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/secure.php';
+return;
+
 if( isset( $_GET[ 'Change' ] ) ) {
 	// Checks to see where the request came from
 	if( stripos( $_SERVER[ 'HTTP_REFERER' ] ,$_SERVER[ 'SERVER_NAME' ]) !== false ) {

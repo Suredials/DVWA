@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/secure.php';
+return;
+
 if( isset( $_GET[ 'Change' ] ) ) {
 	// Check Anti-CSRF token
 	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );

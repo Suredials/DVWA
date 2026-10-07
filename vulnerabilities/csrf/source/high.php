@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/secure.php';
+return;
+
 $change = false;
 $request_type = "html";
 $return_message = "Request Failed";
