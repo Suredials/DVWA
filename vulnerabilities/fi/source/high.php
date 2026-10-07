@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/impossible.php';
+return;
+
 // The page we wish to display
 $file = $_GET[ 'page' ] ?? '';
 
