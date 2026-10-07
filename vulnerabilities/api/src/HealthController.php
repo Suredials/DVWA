@@ -84,8 +84,14 @@ class HealthController
 		$input = (array) json_decode(file_get_contents('php://input'), TRUE);
 		if (array_key_exists ("target", $input)) {
 			$target = $input['target'];
+			if (!is_string($target) || filter_var($target, FILTER_VALIDATE_IP) === false) {
+				return array(
+					'status_code_header' => 'HTTP/1.1 422 Unprocessable Entity',
+					'body' => json_encode(array('status' => 'Invalid target')),
+				);
+			}
 
-			exec ("ping -c 4 " . $target, $output, $ret_var);
+			exec ("ping -c 4 -- " . escapeshellarg($target), $output, $ret_var);
 
 			if ($ret_var == 0) {
 				$response['status_code_header'] = 'HTTP/1.1 200 OK';
@@ -197,4 +203,3 @@ final class Words {
     #[OAT\Property(example: "Hello World")]
     public string $words;
 }
-
