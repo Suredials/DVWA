@@ -5,7 +5,6 @@ require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 dvwaPageStartup( array( 'authenticated' ) );
 
 if( dvwaCurrentUser() !== 'admin' ) {
-	http_response_code( 403 );
 	header( 'Content-Type: application/json' );
 	echo json_encode( array( 'result' => 'fail', 'error' => 'Access denied' ) );
 	exit;

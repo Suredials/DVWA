@@ -1,6 +1,4 @@
 <?php
-require __DIR__ . '/impossible.php';
-return;
 function decrypt ($ciphertext, $key) {
 	$e = openssl_decrypt($ciphertext, 'aes-128-ecb', $key, OPENSSL_PKCS1_PADDING);
 	if ($e === false) {
@@ -9,7 +7,7 @@ function decrypt ($ciphertext, $key) {
 	return $e;
 }
 
-$key = "ik ben een aardbei";
+$key = hash( 'sha256', session_id() . __FILE__, true );
 
 $errors = "";
 $success = "";

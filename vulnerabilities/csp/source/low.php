@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/impossible.php';
-return;
 
 $headerCSP = "Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self';";
 
@@ -16,6 +14,8 @@ header($headerCSP);
 $page[ 'body' ] .= '
 <form name="csp" method="POST">
 	<p>External script inclusion is disabled.</p>
+	<input size="50" type="text" name="include" value="" id="include" />
+	<input type="submit" value="Include" />
 </form>
 <p>
 	You will probably need to do some reading up on what some of the domains allowed by the CSP do and how they can be used.

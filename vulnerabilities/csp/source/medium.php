@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/impossible.php';
-return;
 
 $headerCSP = "Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self';";
 
@@ -14,5 +12,7 @@ header($headerCSP);
 $page[ 'body' ] .= '
 <form name="csp" method="POST">
 	<p>Inline script inclusion is disabled.</p>
+	<input size="50" type="text" name="include" value="" id="include" />
+	<input type="submit" value="Include" />
 </form>
 ';
