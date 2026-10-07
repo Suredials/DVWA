@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/impossible.php';
+return;
+
 if( isset( $_GET[ 'Login' ] ) ) {
 	// Check Anti-CSRF token
 	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );

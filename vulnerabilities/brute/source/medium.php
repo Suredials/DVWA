@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/impossible.php';
+return;
+
 if( isset( $_GET[ 'Login' ] ) ) {
 	// Sanitise username input
 	$user = $_GET[ 'username' ];
